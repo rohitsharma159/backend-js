@@ -1,18 +1,35 @@
+// import mongoose from "mongoose";
+// import { DB_NAME } from "../constants.js";
+
+
+// const ConnectDB = async () => {
+//     try {
+//         const connectionInstance = await mongoose.connect(`${process.env.MONGO_URL}/${DB_NAME}`)
+//         console.log(`\n MongoDB connected !! DB HOST: ${connectionInstance.connection.host}`);
+//     } catch (error) {
+//         console.log("error aa gya bhai", error)
+//         process.exit(1)
+//     }
+// }
+
+
+// export default ConnectDB
+
+
+
+
 import mongoose from "mongoose";
 import { DB_NAME } from "../constants.js";
 
 
-const ConnectDB = async () => {
+const connectDB = async () => {
     try {
-        const connectionInstance = await mongoose.connect(`${process.env.MONGO_URL}/$
-            {DB_NAME}`)
-            console.log(`\n MongoDB connected !! DB HOST: ${connectionInstance.connection.host}`);
-            
+        const connectionInstance = await mongoose.connect(`${process.env.MONGO_URL}/${DB_NAME}`)
+        console.log(`\n MongoDB connected !! DB HOST: ${connectionInstance.connection.host}`);
     } catch (error) {
-        console.error("error aa gya bhai", error)
+        console.log("MONGODB connection FAILED ", error);
+        process.exit(1)
     }
-    process.exit(1);
 }
 
-
-export default ConnectDB
+export default connectDB
